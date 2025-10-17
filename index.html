@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ALAGURAJ Animation</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      background: #10131a;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+    .glow-text {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      font-size: 64px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      color: #fff;
+      text-shadow:
+        0 0 10px #48ffb4,
+        0 0 20px #00e5ff,
+        0 0 40px #8f00ff,
+        0 0 80px #ff1aff;
+      animation:
+        colorShift 2s infinite linear alternate,
+        textFade 1.5s;
+      opacity: 0;
+      animation-fill-mode: forwards;
+    }
+    @keyframes textFade {
+      to { opacity: 1; }
+    }
+    @keyframes colorShift {
+      0% {
+        color: #00fff2;
+        text-shadow:
+          0 0 10px #48ffb4,
+          0 0 20px #00e5ff,
+          0 0 40px #8f00ff,
+          0 0 80px #ff1aff;
+      }
+      50% {
+        color: #ff2cc3;
+        text-shadow:
+          0 0 20px #ff70e5,
+          0 0 30px #bb00ff,
+          0 0 50px #00ffea,
+          0 0 100px #1adaff;
+      }
+      100% {
+        color: #ffff66;
+        text-shadow:
+          0 0 10px #ffefa1,
+          0 0 20px #ffa900,
+          0 0 60px #ff44aa,
+          0 0 100px #ffe222;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="glow-text">ALAGURAJ</div>
+</body>
+</html>
