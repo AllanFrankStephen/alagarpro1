@@ -1,70 +1,188 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>ALAGURAJ Animation</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    html, body {
-      height: 100%;
-      margin: 0;
-      padding: 0;
-      background: #10131a;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      overflow: hidden;
-    }
-    .glow-text {
-      font-family: 'Segoe UI', Arial, sans-serif;
-      font-size: 64px;
-      font-weight: 700;
-      letter-spacing: 0.15em;
-      color: #fff;
-      text-shadow:
-        0 0 10px #48ffb4,
-        0 0 20px #00e5ff,
-        0 0 40px #8f00ff,
-        0 0 80px #ff1aff;
-      animation:
-        colorShift 2s infinite linear alternate,
-        textFade 1.5s;
-      opacity: 0;
-      animation-fill-mode: forwards;
-    }
-    @keyframes textFade {
-      to { opacity: 1; }
-    }
-    @keyframes colorShift {
-      0% {
-        color: #00fff2;
-        text-shadow:
-          0 0 10px #48ffb4,
-          0 0 20px #00e5ff,
-          0 0 40px #8f00ff,
-          0 0 80px #ff1aff;
-      }
-      50% {
-        color: #ff2cc3;
-        text-shadow:
-          0 0 20px #ff70e5,
-          0 0 30px #bb00ff,
-          0 0 50px #00ffea,
-          0 0 100px #1adaff;
-      }
-      100% {
-        color: #ffff66;
-        text-shadow:
-          0 0 10px #ffefa1,
-          0 0 20px #ffa900,
-          0 0 60px #ff44aa,
-          0 0 100px #ffe222;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ALAGURAJ Animation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(45deg, #ff006e, #fb5607, #ffbe0b, #8338ec, #3a86ff);
+            background-size: 400% 400%;
+            animation: vibrant-bg 8s ease infinite;
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+        }
+
+        @keyframes vibrant-bg {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .text {
+            font-size: 100px;
+            font-weight: 900;
+            letter-spacing: 12px;
+            color: #1a1a1a;
+            text-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+            position: relative;
+            display: inline-block;
+        }
+
+        .letter {
+            display: inline-block;
+            position: relative;
+            animation: wave 2s ease-in-out infinite;
+        }
+
+        .letter:nth-child(1) { animation-delay: 0s; }
+        .letter:nth-child(2) { animation-delay: 0.1s; }
+        .letter:nth-child(3) { animation-delay: 0.2s; }
+        .letter:nth-child(4) { animation-delay: 0.3s; }
+        .letter:nth-child(5) { animation-delay: 0.4s; }
+        .letter:nth-child(6) { animation-delay: 0.5s; }
+        .letter:nth-child(7) { animation-delay: 0.6s; }
+        .letter:nth-child(8) { animation-delay: 0.7s; }
+
+        @keyframes wave {
+            0%, 100% {
+                transform: translateY(0) rotateZ(0deg);
+            }
+            25% {
+                transform: translateY(-40px) rotateZ(-5deg);
+            }
+            50% {
+                transform: translateY(0) rotateZ(0deg);
+            }
+            75% {
+                transform: translateY(-20px) rotateZ(5deg);
+            }
+        }
+
+        /* Electric wave glow effect */
+        .letter::before {
+            content: attr(data-text);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            color: #00ffff;
+            z-index: -1;
+            filter: blur(10px);
+            opacity: 0;
+            animation: electric-wave 2s ease-in-out infinite;
+        }
+
+        .letter:nth-child(1)::before { animation-delay: 0s; content: "A"; }
+        .letter:nth-child(2)::before { animation-delay: 0.1s; content: "L"; }
+        .letter:nth-child(3)::before { animation-delay: 0.2s; content: "A"; }
+        .letter:nth-child(4)::before { animation-delay: 0.3s; content: "G"; }
+        .letter:nth-child(5)::before { animation-delay: 0.4s; content: "U"; }
+        .letter:nth-child(6)::before { animation-delay: 0.5s; content: "R"; }
+        .letter:nth-child(7)::before { animation-delay: 0.6s; content: "A"; }
+        .letter:nth-child(8)::before { animation-delay: 0.7s; content: "J"; }
+
+        @keyframes electric-wave {
+            0%, 100% {
+                opacity: 0;
+                transform: translateY(0);
+            }
+            50% {
+                opacity: 1;
+                transform: translateY(-40px);
+            }
+        }
+
+        /* Electric bolts around text */
+        .electric-bolts {
+            position: absolute;
+            width: 400px;
+            height: 150px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+        }
+
+        .bolt {
+            position: absolute;
+            width: 2px;
+            height: 40px;
+            background: linear-gradient(to bottom, #00ffff, transparent);
+            animation: bolt-strike 1.5s ease-in-out infinite;
+        }
+
+        .bolt:nth-child(1) {
+            left: 10%;
+            top: -20px;
+            animation-delay: 0s;
+        }
+
+        .bolt:nth-child(2) {
+            right: 10%;
+            top: 0;
+            animation-delay: 0.3s;
+        }
+
+        .bolt:nth-child(3) {
+            left: 5%;
+            bottom: -20px;
+            animation-delay: 0.6s;
+        }
+
+        .bolt:nth-child(4) {
+            right: 5%;
+            bottom: 0;
+            animation-delay: 0.9s;
+        }
+
+        @keyframes bolt-strike {
+            0%, 100% {
+                opacity: 0;
+                height: 0;
+            }
+            50% {
+                opacity: 1;
+                height: 40px;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="glow-text">ALAGURAJ</div>
+    <div class="container">
+        <div class="electric-bolts">
+            <div class="bolt"></div>
+            <div class="bolt"></div>
+            <div class="bolt"></div>
+            <div class="bolt"></div>
+        </div>
+        <div class="text">
+            <span class="letter">A</span>
+            <span class="letter">L</span>
+            <span class="letter">A</span>
+            <span class="letter">G</span>
+            <span class="letter">U</span>
+            <span class="letter">R</span>
+            <span class="letter">A</span>
+            <span class="letter">J</span>
+        </div>
+    </div>
 </body>
 </html>
